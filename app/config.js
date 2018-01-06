@@ -8,7 +8,6 @@ var path  = require('path');
 var debug = require('debug')('config readers');
 
 function parseEnvValue(value, isArray) {
-    value = value;
     value = value.trim();
     if (isArray) {s
         return _.map(value.split(','), function(value) {
@@ -165,6 +164,9 @@ var pipeline = [
         }
         if (process.env.MONGO_DOCKER) {
             context.result.database.uri = process.env.MONGO_DOCKER;
+        }
+        if (process.env.MONGO_HELM) {
+            context.result.database.uri = "mongodb://" + process.env.MONGO_HELM + ":27017/hp_mongo";
         }
     },
 
