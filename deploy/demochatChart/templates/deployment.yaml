@@ -21,7 +21,7 @@ spec:
         containers:
         - image: {{.Values.image.repository}}:{{.Values.image.tag}}
           name: app
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: Always
           env:
               - name : MONGO_HELM
                 value: {{.Release.Name }}-mongodb
@@ -29,8 +29,5 @@ spec:
             - containerPort: {{ .Values.service.internalPort }}
           resources: {}
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 50%
-      maxSurge: 50%
+    type: Recreate
 
