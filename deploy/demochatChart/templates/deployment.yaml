@@ -7,7 +7,7 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-  #  appversion: "{{.Values.appversion}}"
+    commit: {{ .Values.commit.sha }}
 spec:
   replicas: {{ .Values.replicaCount }}
   template:
@@ -15,7 +15,6 @@ spec:
       labels:
         app: {{ template "name" . }}
         release: {{ .Release.Name }}
-      #  imageinfo : {{.Values.test.key}}
         appversion: "{{.Values.appversion}}"
     spec:
         containers:
