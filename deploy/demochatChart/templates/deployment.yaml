@@ -28,9 +28,9 @@ spec:
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           resources: {}
-    strategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxUnavailable: 50%
-        maxSurge: 50%
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 50%
 
